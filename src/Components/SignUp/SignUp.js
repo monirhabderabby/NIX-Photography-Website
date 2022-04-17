@@ -4,18 +4,13 @@ import Navbar from '../Navbar/Navbar';
 import google from '../Assets/google.svg'
 import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 
 const SignUp = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [customError, setError] = useState('');
-    // const [
-    //     createUserWithEmailAndPassword,
-    //     user,
-    //     loading,
-    //     error,
-    //   ] = useCreateUserWithEmailAndPassword(auth);
+    const googleProvider = new GoogleAuthProvider()
 
     const handleEmail = e =>{
         setEmail(e.target.value)
@@ -26,18 +21,21 @@ const SignUp = () => {
     const handleForm = e =>{
         e.preventDefault()
     }
+    const signInWithGoogle = () => {
+        signInWithPopup(auth, googleProvider)
+    }
     const createUser = () =>{
         createUserWithEmailAndPassword(auth, email, password)
-  .then((userCredential) => {
-    // Signed in 
-    const user = userCredential.user;
-    // ...
-  })
-  .catch((error) => {
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    // ..
-  });
+        .then((userCredential) => {
+            // Signed in 
+            const user = userCredential.user;
+            // ...
+        })
+        .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            // ..
+        });
     }
 
     return (
@@ -57,7 +55,7 @@ const SignUp = () => {
                     <p className='or'>------ or ------</p>
                     
                     <div className='input-field'>
-                        <button className='google-btn'>
+                        <button className='google-btn' onClick={signInWithGoogle}>
                             <img src={google} className="icon" alt='icon'></img>
                             Continue with Google</button>
                     </div>
