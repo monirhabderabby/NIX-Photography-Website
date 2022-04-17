@@ -15,7 +15,7 @@ const Navbar = () => {
         <form className="navbar-nav ms-auto">
         <Link to="/" className="menubar">Home</Link>
         <Link to="/packages" className="menubar">Packages</Link>
-        <Link to="blogs" className="menubar">Blogs</Link>
+        <Link to="/blogs" className="menubar">Blogs</Link>
         <Link to="/about" className="menubar">About</Link>
         <Link to="/login" className="menubar">Login</Link>
         </form>

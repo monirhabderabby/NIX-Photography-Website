@@ -25,7 +25,7 @@ const Login = () => {
                     
                     <div className='input-field'>
                         <button className='google-btn'>
-                            <img src={google} className="icon"></img>
+                            <img src={google} className="icon" alt='icon'></img>
                             Continue with Google</button>
                     </div>
                 </form>

@@ -15,10 +15,10 @@ const Packages = ({checkOut}) => {
     return (
         <div className='packages-container'>
             <Navbar></Navbar>
-            <div className='package-container'>
+            <div>
             <h1 className='text-center'>Packages</h1>
             
-            <div className='row gy-5'>
+            <div className='row'>
                 {
                     packages.slice(0,3).map(perPackage => <Package perPackage={perPackage} checkOut={checkOut} key={perPackage.Id}></Package>)
                 }

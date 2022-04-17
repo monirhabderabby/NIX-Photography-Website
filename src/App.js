@@ -7,6 +7,8 @@ import Checkout from './Components/Checkout/Checkout';
 import { useState } from 'react';
 import Login from './Components/Login/Login';
 import SignUp from './Components/SignUp/SignUp';
+import About from './Components/About/About';
+import Blogs from './Components/Blogs/Blogs';
 
 function App() {
   const [buyPackage, setPackage] = useState({})
@@ -22,6 +24,8 @@ function App() {
         <Route path='/checkout' element={<Checkout buyPackage={buyPackage}></Checkout>}></Route>
         <Route path='/login' element={<Login></Login>}></Route>
         <Route path='signup' element={<SignUp></SignUp>}></Route>
+        <Route path='/about' element={<About></About>}></Route>
+        <Route path='/blogs' element={<Blogs></Blogs>}></Route>
       </Routes>
     </div>
   );

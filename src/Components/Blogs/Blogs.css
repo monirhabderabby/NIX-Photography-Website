@@ -1,7 +1,7 @@
-.packages-container{
+.blogs-container{
     height: 100vh;
     width: 100%;
     background-image: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)), url(../Assets/flower-background.jpg);
     background-size: cover;
-    background-repeat: no-repeat;
+    color: white;
 }
