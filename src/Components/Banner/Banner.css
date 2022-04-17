@@ -34,3 +34,9 @@
     background-color: #1da1fa;
     color: white;
 }
+
+@media screen and (max-width: 576px) {
+    .gallary img{
+        display: none;
+    }
+}
