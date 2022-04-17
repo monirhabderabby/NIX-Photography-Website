@@ -50,7 +50,7 @@ const SignUp = () => {
                     <div className='input-field'>
                         <input onBlur={handlePassword} type="password" name="password" placeholder='Password' required/>
                     </div>
-                    <input type="submit" value="LOGIN" className='login-btn' onClick={createUser}/>
+                    <input type="submit" value="SIGNUP" className='login-btn' onClick={createUser}/>
                     <p>Already have an account? <Link to="/login" className='signup-btn'>Login</Link></p>
                     <p className='or'>------ or ------</p>
                     
