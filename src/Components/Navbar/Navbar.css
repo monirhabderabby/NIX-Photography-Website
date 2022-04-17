@@ -15,27 +15,29 @@
     padding: 10px;
     cursor: pointer;
     font-family: 'Shippori Antique';
+    color: white;
 }
 .menubar{
     margin-right: 20px;
     font-size: 16px;
     padding: 10px 15px;
     text-decoration: none;
-    color: #1c1c1c;
+    color: white;
 }
-/* .menu ul{
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    
-} */
-.menu ul a{
-    margin-right: 20px;
-    font-size: 16px;
-    padding: 10px 15px;
-    text-decoration: none;
-    color: #1c1c1c;
+.menubar:hover{
+    color: #1da1fa;
+    border-bottom: 1.5px solid #1da1fa;
 }
-a:hover{
-    border-bottom: 2px solid darkblue;
+
+@media screen and (max-width: 576px) {
+    .logo h2{
+        display: none;
+    }
+    .menubar{
+        margin-right: 5px;
+        padding: 5px;
+        font-size: 12px;
+        text-decoration: none;
+        color: white;
+    }
 }
