@@ -1,22 +1,58 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Navbar from '../Navbar/Navbar';
 import google from '../Assets/google.svg'
+import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import auth from '../../firebase.init';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
 
 const SignUp = () => {
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [customError, setError] = useState('');
+    // const [
+    //     createUserWithEmailAndPassword,
+    //     user,
+    //     loading,
+    //     error,
+    //   ] = useCreateUserWithEmailAndPassword(auth);
+
+    const handleEmail = e =>{
+        setEmail(e.target.value)
+    }
+    const handlePassword = e => {
+        setPassword(e.target.value)
+    }
+    const handleForm = e =>{
+        e.preventDefault()
+    }
+    const createUser = () =>{
+        createUserWithEmailAndPassword(auth, email, password)
+  .then((userCredential) => {
+    // Signed in 
+    const user = userCredential.user;
+    // ...
+  })
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    // ..
+  });
+    }
+
     return (
         <div className='login-container'>
             <Navbar></Navbar>
             <div className="login-form">
-                <form className='form'>
+                <form className='form' onSubmit={handleForm}>
                     <h1>SignUp</h1>
                     <div className='input-field'>
-                        <input type="email" name="email" placeholder='Email' required/>
+                        <input onBlur={handleEmail} type="email" name="email" placeholder='Email' required/>
                     </div>
                     <div className='input-field'>
-                        <input type="password" name="password" placeholder='Password' required/>
+                        <input onBlur={handlePassword} type="password" name="password" placeholder='Password' required/>
                     </div>
-                    <input type="submit" value="LOGIN" className='login-btn'/>
+                    <input type="submit" value="LOGIN" className='login-btn' onClick={createUser}/>
                     <p>Already have an account? <Link to="/login" className='signup-btn'>Login</Link></p>
                     <p className='or'>------ or ------</p>
                     
