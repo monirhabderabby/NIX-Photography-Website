@@ -1,10 +1,13 @@
 import React from 'react';
 import './Checkout.css'
 
-const Checkout = () => {
+const Checkout = ({buyPackage}) => {
+    console.log(buyPackage);
     return (
         <div>
-            This is check out!
+          {
+              <img src={buyPackage.Img} alt="" />
+          }
         </div>
     );
 };

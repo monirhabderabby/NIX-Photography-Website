@@ -1,7 +1,8 @@
 import React from 'react';
+import './package.css'
 import { Link } from 'react-router-dom';
 
-const Package = ({perPackage}) => {
+const Package = ({perPackage, checkOut}) => {
     const {Id, Img, Title, Description, Photographer, Event_Duration, Print} = perPackage;
     return (
         <div className='col-lg-4'>
@@ -16,7 +17,7 @@ const Package = ({perPackage}) => {
                             <p>Print: {Print}</p>
                             <p><small>{Description}</small></p>
                         </div>
-                        <Link to={'/checkout'} className="pckg-btn">Buy Now</Link>
+                        <Link to={'/checkout'} className="pckg-btn" onClick={()=> checkOut(perPackage)}>Buy Now</Link>
                     </div>
         </div>
     );

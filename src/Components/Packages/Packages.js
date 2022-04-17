@@ -3,14 +3,13 @@ import Navbar from '../Navbar/Navbar';
 import './Packages.css'
 import Package from '../Package/Package';
 
-const Packages = () => {
+const Packages = ({checkOut}) => {
     const [packages, setPackages] = useState([]);
     useEffect(() => {
         fetch('https://monirhabderabby.github.io/Nix-packages/Nix-Package_update.json')
         .then(res => res.json())
         .then(data => {
             setPackages(data)
-            console.log(data);
         })
     }, [])
     return (
@@ -21,7 +20,7 @@ const Packages = () => {
             
             <div className='row gy-5'>
                 {
-                    packages.slice(0,3).map(perPackage => <Package perPackage={perPackage} key={perPackage.Id}></Package>)
+                    packages.slice(0,3).map(perPackage => <Package perPackage={perPackage} checkOut={checkOut} key={perPackage.Id}></Package>)
                 }
             </div>
             </div>

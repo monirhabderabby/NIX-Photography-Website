@@ -10,15 +10,15 @@
     justify-content: space-between;
     align-items: center;
 }
-.logo h2{
+.logo{
     font-size: 30px;
     padding: 10px;
     cursor: pointer;
     font-family: 'Shippori Antique';
     color: white;
+    text-decoration: none;
 }
 .menubar{
-    margin-right: 20px;
     font-size: 16px;
     padding: 10px 15px;
     text-decoration: none;

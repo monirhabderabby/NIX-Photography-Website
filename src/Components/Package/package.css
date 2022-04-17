@@ -1,0 +1,25 @@
+.card{
+    width: 18rem;
+    border-radius: 8px;
+    margin: 0px auto;
+    border: none;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+.card img{
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+.pckg-btn{
+    width: 100%;
+    padding: 5px 0px;
+    text-decoration: none;
+    color: white;
+    background-color: #1da1fa;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    transition: 0.5s;
+}
+.pckg-btn:hover{
+    color: white;
+    background-color: #1da2fac1;
+}
