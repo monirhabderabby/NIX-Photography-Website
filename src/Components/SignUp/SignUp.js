@@ -4,13 +4,17 @@ import Navbar from '../Navbar/Navbar';
 import google from '../Assets/google.svg'
 import { useCreateUserWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
+import Loading from '../Loading/Loading';
 
 const SignUp = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [customError, setError] = useState('');
     const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
-    const [createUserWithEmailAndPass] = useCreateUserWithEmailAndPassword(auth)
+    const [createUserWithEmailAndPass] = useCreateUserWithEmailAndPassword(auth);
+    if(loading){
+        return <Loading></Loading>
+    }
 
     const handleEmail = e =>{
         setEmail(e.target.value)
@@ -22,6 +26,9 @@ const SignUp = () => {
         e.preventDefault()
     }
     const handlesignInWithGoogle = () => {
+        if(loading){
+            return <Loading></Loading>
+        }
         signInWithGoogle();
     }
     const createUser = () =>{

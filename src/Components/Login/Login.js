@@ -3,17 +3,25 @@ import Navbar from '../Navbar/Navbar';
 import google from '../Assets/google.svg'
 import './Login.css'
 import { Link } from 'react-router-dom';
-import { GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
+import { GoogleAuthProvider, sendPasswordResetEmail, signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
 import auth from '../../firebase.init';
 import { useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import Loading from '../Loading/Loading';
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from 'react-toastify';
 
 const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('')
     const [customError, setError] = useState('');
-    const [signInWithEmailAndPass] = useSignInWithEmailAndPassword(auth);
-    const [signInWithGoogle] = useSignInWithGoogle(auth)
+    
+    const [signInWithEmailAndPass, user, loading, error] = useSignInWithEmailAndPassword(auth);
+    const [signInWithGoogle] = useSignInWithGoogle(auth);
+
+    if(loading){
+        return <Loading></Loading>
+    }
 
     const handleEmail = e => {
         setEmail(e.target.value)
@@ -40,6 +48,18 @@ const Login = () => {
             signInWithEmailAndPass(email, password)
         }
     }
+
+    const handleResetPassword = () =>{
+        sendPasswordResetEmail(auth, email)
+        .then(() => {
+            toast('email sent')
+          })
+          .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            // ..
+          });
+    }
     
     return (
         <div className='login-container'>
@@ -56,7 +76,7 @@ const Login = () => {
                     <div className='input-field'>
                         <input onBlur={handleConfirmPassword} type="password" name="ConfirmPassword" placeholder='ConfirmPassword' required/>
                     </div>
-                    <small className='reset-btn'>Reset Password</small> <br />
+                    <small className='reset-btn' onClick={handleResetPassword}>Reset Password</small> <br />
                     <input onClick={userLogin} type="submit" value="LOGIN" className='login-btn'/>
                     <p>I am new? <Link to="/signup" className='signup-btn'>Create an Account</Link></p>
 
@@ -67,7 +87,9 @@ const Login = () => {
                             <img src={google} className="icon" alt='icon'></img>
                             Continue with Google</button>
                     </div>
+                    <ToastContainer />
                 </form>
+
                 
             </div>
         </div>
