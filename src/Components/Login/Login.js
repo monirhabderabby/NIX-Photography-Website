@@ -14,7 +14,7 @@ const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('')
-    const [customError, setError] = useState('');
+    const [customError, setCustomError] = useState('');
     
     const [signInWithEmailAndPass, user, loading, error] = useSignInWithEmailAndPassword(auth);
     const [signInWithGoogle] = useSignInWithGoogle(auth);
@@ -42,9 +42,10 @@ const Login = () => {
     
     const userLogin = () =>{
         if(password !== confirmPassword){
-            alert("Password didn't matched")
+            setCustomError("Password didn't matched")
         }
         else{
+            setCustomError('')
             signInWithEmailAndPass(email, password)
         }
     }
@@ -75,6 +76,7 @@ const Login = () => {
                     </div>
                     <div className='input-field'>
                         <input onBlur={handleConfirmPassword} type="password" name="ConfirmPassword" placeholder='ConfirmPassword' required/>
+                        <small className='text-danger'>{customError}</small>
                     </div>
                     <small className='reset-btn' onClick={handleResetPassword}>Reset Password</small> <br />
                     <input onClick={userLogin} type="submit" value="LOGIN" className='login-btn'/>
