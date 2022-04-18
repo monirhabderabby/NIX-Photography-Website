@@ -5,12 +5,14 @@ import './Login.css'
 import { Link } from 'react-router-dom';
 import { GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
 import auth from '../../firebase.init';
+import { useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 
 const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [customError, setError] = useState('');
-    const googleProvider = new GoogleAuthProvider();
+    const [signInWithEmailAndPass] = useSignInWithEmailAndPassword(auth);
+    const [signInWithGoogle] = useSignInWithGoogle(auth)
 
     const handleEmail = e => {
         setEmail(e.target.value)
@@ -22,21 +24,11 @@ const Login = () => {
         e.preventDefault()
     }
 
-    const signInWithGoogle = () =>{
-        signInWithPopup(auth, googleProvider)
+    const handleSignInWithGoogle = () =>{
+        signInWithGoogle()
     }
     const userLogin = () =>{
-        signInWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
-            // Signed in 
-            const user = userCredential.user;
-            
-            // ...
-        })
-        .catch((error) => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
-        });
+        signInWithEmailAndPass(email, password)
     }
     
     return (
@@ -58,7 +50,7 @@ const Login = () => {
                     <p className='or'>------ or ------</p>
                     
                     <div className='input-field'>
-                        <button className='google-btn' onClick={signInWithGoogle}>
+                        <button className='google-btn' onClick={handleSignInWithGoogle}>
                             <img src={google} className="icon" alt='icon'></img>
                             Continue with Google</button>
                     </div>
