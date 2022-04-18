@@ -3,7 +3,8 @@ import './package.css'
 import { Link } from 'react-router-dom';
 
 const Package = ({perPackage, checkOut}) => {
-    const {Id, Img, Title, Description, Photographer, Event_Duration, Print} = perPackage;
+    const {Id, Img, Title, Description, Photographer, Event_Duration, Print, Price} = perPackage;
+    console.log(perPackage);
     return (
         <div className='col-lg-4'>
             <div className='card'>
@@ -16,6 +17,7 @@ const Package = ({perPackage, checkOut}) => {
                             <p>Special Photo: 100PCS</p>
                             <p>Print: {Print}</p>
                             <p><small>{Description}</small></p>
+                            <p>${Price}</p>
                         </div>
                         <Link to={'/checkout'} className="pckg-btn" onClick={()=> checkOut(perPackage)}>Buy Now</Link>
                     </div>
