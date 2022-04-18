@@ -20,9 +20,9 @@ const Login = () => {
     
     const [signInWithEmailAndPass, , loading1, ] = useSignInWithEmailAndPassword(auth);
     const [signInWithGoogle] = useSignInWithGoogle(auth);
-    const [currentUser, loading, currentError] = useAuthState(auth)
+    const [currentUser, loading] = useAuthState(auth)
 
-    if(loading1){
+    if(loading1 || loading){
         return <Loading></Loading>
     }
 
@@ -64,9 +64,6 @@ const Login = () => {
             toast('email sent')
           })
           .catch((error) => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            // ..
           });
     }
     
