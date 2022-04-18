@@ -13,7 +13,7 @@
     text-decoration: none;
     color: white;
 }
-.menubar:hover{
+.active{
     color: #1da1fa;
     border-bottom: 1.5px solid #1da1fa;
 }

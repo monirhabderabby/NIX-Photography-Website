@@ -20,7 +20,7 @@ function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path='/' element={<Header></Header>}></Route>
+        <Route path='/' element={(<Header></Header>)}></Route>
           <Route path='/packages' element={<Packages checkOut={checkOut}></Packages>}></Route>
         <Route path='/checkout' element={
           <RequireAuth>
@@ -32,6 +32,7 @@ function App() {
         <Route path='/about' element={<About></About>}></Route>
         <Route path='/blogs' element={<Blogs></Blogs>}></Route>
       </Routes>
+      
     </div>
   );
 }

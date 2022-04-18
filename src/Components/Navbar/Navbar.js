@@ -1,7 +1,7 @@
 import React from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { signOut } from "firebase/auth";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import auth from "../../firebase.init";
 import "./Navbar.css";
 
@@ -18,7 +18,7 @@ const Navbar = () => {
         <span className="navbar-toggler-icon"></span>
       </button>
       <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
-        <Link to="/" className="logo">NIX-Photography</Link>
+        <NavLink to="/" className="logo">NIX-Photography</NavLink>
         <form className="navbar-nav ms-auto">
         <Link to="/" className="menubar">Home</Link>
         <Link to="/packages" className="menubar">Packages</Link>

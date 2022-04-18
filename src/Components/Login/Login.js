@@ -10,6 +10,7 @@ import { useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-fireba
 const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('')
     const [customError, setError] = useState('');
     const [signInWithEmailAndPass] = useSignInWithEmailAndPassword(auth);
     const [signInWithGoogle] = useSignInWithGoogle(auth)
@@ -20,6 +21,9 @@ const Login = () => {
     const handlePassword = e =>{
         setPassword(e.target.value)
     }
+    const handleConfirmPassword = e =>{
+        setConfirmPassword(e.target.value)
+    }
     const handleForm = e =>{
         e.preventDefault()
     }
@@ -27,8 +31,14 @@ const Login = () => {
     const handleSignInWithGoogle = () =>{
         signInWithGoogle()
     }
+    
     const userLogin = () =>{
-        signInWithEmailAndPass(email, password)
+        if(password !== confirmPassword){
+            alert("Password didn't matched")
+        }
+        else{
+            signInWithEmailAndPass(email, password)
+        }
     }
     
     return (
@@ -42,6 +52,9 @@ const Login = () => {
                     </div>
                     <div className='input-field'>
                         <input onBlur={handlePassword} type="password" name="password" placeholder='Password' required/>
+                    </div>
+                    <div className='input-field'>
+                        <input onBlur={handleConfirmPassword} type="password" name="ConfirmPassword" placeholder='ConfirmPassword' required/>
                     </div>
                     <small className='reset-btn'>Reset Password</small> <br />
                     <input onClick={userLogin} type="submit" value="LOGIN" className='login-btn'/>
