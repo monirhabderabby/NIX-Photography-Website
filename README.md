@@ -8,5 +8,11 @@
 
 Technologies I used in this project >>
 
-* Bootstrap
+* React Bootstrap
 * React Router
+* Firebase for Authentication
+ * firebase hooks
+
+## Special feature
+* Toast
+* Spinner
