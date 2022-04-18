@@ -10,6 +10,7 @@ import SignUp from './Components/SignUp/SignUp';
 import About from './Components/About/About';
 import Blogs from './Components/Blogs/Blogs';
 import RequireAuth from './Components/RequreAuth/RequireAuth';
+import Gallaries from './Components/Gallaries/Gallaries';
 
 function App() {
   const [buyPackage, setPackage] = useState({})
@@ -22,6 +23,7 @@ function App() {
       <Routes>
         <Route path='/' element={(<Header></Header>)}></Route>
           <Route path='/packages' element={<Packages checkOut={checkOut}></Packages>}></Route>
+          <Route path='/gallary' element={<Gallaries></Gallaries>}></Route>
         <Route path='/checkout' element={
           <RequireAuth>
             <Checkout buyPackage={buyPackage}></Checkout>
