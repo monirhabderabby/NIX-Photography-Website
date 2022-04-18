@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import Navbar from '../Navbar/Navbar';
 import google from '../Assets/google.svg'
 import './Login.css'
-import { Link } from 'react-router-dom';
-import { GoogleAuthProvider, sendPasswordResetEmail, signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { sendPasswordResetEmail } from 'firebase/auth';
 import auth from '../../firebase.init';
-import { useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import { useAuthState, useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import Loading from '../Loading/Loading';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer, toast } from 'react-toastify';
@@ -15,14 +15,22 @@ const Login = () => {
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('')
     const [customError, setCustomError] = useState('');
+    const location = useLocation();
+    const navigate = useNavigate()
     
-    const [signInWithEmailAndPass, user, loading, error] = useSignInWithEmailAndPassword(auth);
+    const [signInWithEmailAndPass, , loading1, ] = useSignInWithEmailAndPassword(auth);
     const [signInWithGoogle] = useSignInWithGoogle(auth);
+    const [currentUser, loading, currentError] = useAuthState(auth)
 
-    if(loading){
+    if(loading1){
         return <Loading></Loading>
     }
 
+    let from = location.state?.from?.pathname || "/";
+
+    if(currentUser){
+        navigate(from, { replace: true });
+    }
     const handleEmail = e => {
         setEmail(e.target.value)
     }
@@ -46,7 +54,7 @@ const Login = () => {
         }
         else{
             setCustomError('')
-            signInWithEmailAndPass(email, password)
+            signInWithEmailAndPass(email, password);
         }
     }
 

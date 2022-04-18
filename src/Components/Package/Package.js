@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 
 const Package = ({perPackage, checkOut}) => {
     const {Id, Img, Title, Description, Photographer, Event_Duration, Print, Price} = perPackage;
-    console.log(perPackage);
     return (
         <div className='col-lg-4'>
             <div className='card'>
