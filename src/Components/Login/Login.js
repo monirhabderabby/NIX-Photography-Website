@@ -3,7 +3,7 @@ import Navbar from '../Navbar/Navbar';
 import google from '../Assets/google.svg'
 import './Login.css'
 import { Link } from 'react-router-dom';
-import { GoogleAuthProvider, signInWithEmailAndPassword } from 'firebase/auth';
+import { GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
 import auth from '../../firebase.init';
 
 const Login = () => {
@@ -21,6 +21,10 @@ const Login = () => {
     const handleForm = e =>{
         e.preventDefault()
     }
+
+    const signInWithGoogle = () =>{
+        signInWithPopup(auth, googleProvider)
+    }
     const userLogin = () =>{
         signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
@@ -32,7 +36,7 @@ const Login = () => {
         .catch((error) => {
             const errorCode = error.code;
             const errorMessage = error.message;
-  });
+        });
     }
     
     return (
@@ -54,7 +58,7 @@ const Login = () => {
                     <p className='or'>------ or ------</p>
                     
                     <div className='input-field'>
-                        <button className='google-btn'>
+                        <button className='google-btn' onClick={signInWithGoogle}>
                             <img src={google} className="icon" alt='icon'></img>
                             Continue with Google</button>
                     </div>

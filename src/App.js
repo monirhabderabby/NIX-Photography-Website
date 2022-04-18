@@ -9,6 +9,7 @@ import Login from './Components/Login/Login';
 import SignUp from './Components/SignUp/SignUp';
 import About from './Components/About/About';
 import Blogs from './Components/Blogs/Blogs';
+import RequireAuth from './Components/RequreAuth/RequireAuth';
 
 function App() {
   const [buyPackage, setPackage] = useState({})
@@ -20,8 +21,12 @@ function App() {
     <div className="App">
       <Routes>
         <Route path='/' element={<Header></Header>}></Route>
-        <Route path='/packages' element={<Packages checkOut={checkOut}></Packages>}></Route>
-        <Route path='/checkout' element={<Checkout buyPackage={buyPackage}></Checkout>}></Route>
+          <Route path='/packages' element={<Packages checkOut={checkOut}></Packages>}></Route>
+        <Route path='/checkout' element={
+          <RequireAuth>
+            <Checkout buyPackage={buyPackage}></Checkout>
+          </RequireAuth>
+        }></Route>
         <Route path='/login' element={<Login></Login>}></Route>
         <Route path='signup' element={<SignUp></SignUp>}></Route>
         <Route path='/about' element={<About></About>}></Route>
