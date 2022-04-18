@@ -1,15 +1,19 @@
 import React from 'react';
-import { useAuthState } from 'react-firebase-hooks/auth';
-import auth from '../../firebase.init';
 import Banner from '../Banner/Banner';
+import Footer from '../Footer/Footer';
 import Navbar from '../Navbar/Navbar';
+import Packages from '../Packages/Packages';
 import './Header.css'
 
 const Header = () => {
     return (
-        <div className='header'>
+        <div>
+            <div className='header'>
             <Navbar></Navbar>
             <Banner></Banner>
+            </div>
+            <Packages></Packages>
+            <Footer></Footer>
         </div>
     );
 };

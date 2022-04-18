@@ -14,9 +14,8 @@ const Packages = ({checkOut}) => {
     }, [])
     return (
         <div className='packages-container'>
-            <Navbar></Navbar>
             <div>
-            <h1 className='text-center'>Packages</h1>
+            <h1 className='text-center text-white mb-3 pt-5'>Packages</h1>
             
             <div className='row'>
                 {
